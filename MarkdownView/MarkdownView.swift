@@ -48,7 +48,10 @@ open class MarkdownView: UIView {
     }
   }
 
-  @objc public func load(markdown: String?, enableImage: Bool = true) {
+  @objc public func load(markdown: String?,
+                         enableImage: Bool = true,
+                         needPreviewImage: Bool = true,
+                         videoSelector: String = "[title ^= \"pryanikyVideo-\"]") {
     guard let markdown = markdown else { return }
 
     let bundle = Bundle(for: MarkdownView.self)
@@ -71,7 +74,7 @@ open class MarkdownView: UIView {
 
       let escapedMarkdown = self.escape(markdown: markdown) ?? ""
       let imageOption = enableImage ? "true" : "false"
-      let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption), '\(playButtomImageURL)');"
+      let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption), '\(playButtomImageURL), \(needPreviewImage), \(videoSelector)');"
       let userScript = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 
       let controller = WKUserContentController()

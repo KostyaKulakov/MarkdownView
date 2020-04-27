@@ -6,7 +6,11 @@ import './../css/gist.css'
 import './../css/github.css'
 import './../css/index.css'
 
-window.showMarkdown = (percentEncodedMarkdown, enableImage = true, playButtonImageURL) => {
+window.showMarkdown = (percentEncodedMarkdown,
+                       enableImage = true,
+                       playButtonImageURL,
+                       needPreviewImage = true,
+                       videoSelector = '[title ^= "pryanikyVideo-"]') => {
 
   if (!percentEncodedMarkdown) {
     return
@@ -45,12 +49,14 @@ window.showMarkdown = (percentEncodedMarkdown, enableImage = true, playButtonIma
     hljs.highlightBlock(code)
   })
 
-  addPlayButton(playButtonImageURL)
+  if (needPreviewImage) {
+    addPlayButton(playButtonImageURL, videoSelector);
+  }
 }
 
 
-function addPlayButton(playButtonImageURL) {
-	var videos = document.querySelectorAll('[title ^= "pryanikyVideo-"]');
+function addPlayButton(playButtonImageURL, selector) {
+	var videos = document.querySelectorAll(selector);
 	videos.forEach.position = "relative";
 
 	for (var i = 0; i < videos.length; ++i) {
