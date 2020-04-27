@@ -74,7 +74,7 @@ open class MarkdownView: UIView {
 
       let escapedMarkdown = self.escape(markdown: markdown) ?? ""
       let imageOption = enableImage ? "true" : "false"
-      let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption), '\(playButtomImageURL), \(needPreviewImage), \(videoSelector)');"
+      let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption), '\(playButtomImageURL)', \(needPreviewImage), '\(videoSelector)');"
       let userScript = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 
       let controller = WKUserContentController()
