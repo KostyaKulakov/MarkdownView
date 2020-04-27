@@ -51,6 +51,7 @@ open class MarkdownView: UIView {
   @objc public func load(markdown: String?,
                          enableImage: Bool = true,
                          needPreviewImage: Bool = true,
+                         videoIconURL: URL? = nil,
                          videoSelector: String = "[title ^= \"pryanikyVideo-\"]") {
     guard let markdown = markdown else { return }
 
@@ -63,11 +64,12 @@ open class MarkdownView: UIView {
                  withExtension: "html",
                  subdirectory: "MarkdownView.bundle")
     
-    let imagePlayButtonURL = bundle.url(forResource: "mv_video_play",
-                                        withExtension: "png") ??
-                             bundle.url(forResource: "mv_video_play",
-                                        withExtension: "png",
-                                        subdirectory: "MarkdownView.bundle")
+
+    let imagePlayButtonURL = videoIconURL ??
+                            bundle.url(forResource: "mv_video_play",
+                                       withExtension: "png",
+                                       subdirectory: "MarkdownView.bundle")
+        
 
     if let url = htmlURL,
        let playButtomImageURL = imagePlayButtonURL?.absoluteString {
