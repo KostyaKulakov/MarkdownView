@@ -59,13 +59,19 @@ open class MarkdownView: UIView {
       bundle.url(forResource: "index",
                  withExtension: "html",
                  subdirectory: "MarkdownView.bundle")
+    
+    let imagePlayButtonURL = bundle.url(forResource: "play",
+                                        withExtension: "png",
+                                        subdirectory: "MarkdownView.bundle")
 
-    if let url = htmlURL {
+    if let url = htmlURL,
+       let playButtomImageURL = imagePlayButtonURL?.absoluteString {
+        
       let templateRequest = URLRequest(url: url)
 
       let escapedMarkdown = self.escape(markdown: markdown) ?? ""
       let imageOption = enableImage ? "true" : "false"
-      let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption));"
+      let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption), '\(playButtomImageURL)');"
       let userScript = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 
       let controller = WKUserContentController()

@@ -6,7 +6,7 @@ import './../css/gist.css'
 import './../css/github.css'
 import './../css/index.css'
 
-window.showMarkdown = (percentEncodedMarkdown, enableImage = true) => {
+window.showMarkdown = (percentEncodedMarkdown, enableImage = true, playButtonImageURL) => {
 
   if (!percentEncodedMarkdown) {
     return
@@ -45,17 +45,17 @@ window.showMarkdown = (percentEncodedMarkdown, enableImage = true) => {
     hljs.highlightBlock(code)
   })
 
-  addPlayButton()
+  addPlayButton(playButtonImageURL)
 }
 
 
-function addPlayButton() {
+function addPlayButton(playButtonImageURL) {
 	var videos = document.querySelectorAll('[title ^= "pryanikyVideo-"]');
 	videos.forEach.position = "relative";
 
 	for (var i = 0; i < videos.length; ++i) {
 		var playButtonDiv = document.createElement('img');
-  		playButtonDiv.src = "https://logopedkulakova.ru/play.png"
+  		playButtonDiv.src = playButtonImageURL
   		playButtonDiv.style.position = "absolute";
   		playButtonDiv.style.left = 0
   		playButtonDiv.style.right = 0
