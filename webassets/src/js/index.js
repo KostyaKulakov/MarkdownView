@@ -45,4 +45,26 @@ window.showMarkdown = (percentEncodedMarkdown, enableImage = true) => {
     hljs.highlightBlock(code)
   })
 
+  addPlayButton()
 }
+
+
+function addPlayButton() {
+	var videos = document.querySelectorAll('[title ^= "pryanikyVideo-"]');
+	videos.forEach.position = "relative";
+
+	for (var i = 0; i < videos.length; ++i) {
+		var playButtonDiv = document.createElement('img');
+  		playButtonDiv.src = "https://logopedkulakova.ru/play.png"
+  		playButtonDiv.style.position = "absolute";
+  		playButtonDiv.style.left = 0
+  		playButtonDiv.style.right = 0
+  		playButtonDiv.style.top = 0
+  		playButtonDiv.style.bottom = 0
+  		playButtonDiv.style.margin = "auto"
+
+      videos[i].style.position = "relative";
+      videos[i].appendChild(playButtonDiv);
+	}
+}
+
