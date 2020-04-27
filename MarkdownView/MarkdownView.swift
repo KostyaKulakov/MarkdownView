@@ -63,7 +63,9 @@ open class MarkdownView: UIView {
                  withExtension: "html",
                  subdirectory: "MarkdownView.bundle")
     
-    let imagePlayButtonURL = bundle.url(forResource: "play",
+    let imagePlayButtonURL = bundle.url(forResource: "mv_video_play",
+                                        withExtension: "png") ??
+                             bundle.url(forResource: "mv_video_play",
                                         withExtension: "png",
                                         subdirectory: "MarkdownView.bundle")
 
